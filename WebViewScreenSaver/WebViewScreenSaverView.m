@@ -127,6 +127,7 @@ static NSTimeInterval const kOneMinute = 60.0;
   [_webView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
   [_webView setAutoresizesSubviews:YES];
   [_webView setDrawsBackground:NO];
+    
   [self addSubview:_webView];
 
   NSColor *color = [NSColor colorWithCalibratedWhite:0.0 alpha:1.0];
@@ -134,6 +135,7 @@ static NSTimeInterval const kOneMinute = 60.0;
 
   if (!_isPreview && _currentIndex < [[self selectedURLs] count]) {
     [self loadFromStart];
+      
   }
 }
 
@@ -157,9 +159,9 @@ static NSTimeInterval const kOneMinute = 60.0;
     duration = [self timeIntervalForIndex:_currentIndex];
     url = [self urlForIndex:_currentIndex];
   }
-
   [self loadURLThing:url];
   [_timer invalidate];
+
   _timer = [NSTimer scheduledTimerWithTimeInterval:duration
                                             target:self
                                           selector:@selector(loadNext:)
@@ -204,6 +206,7 @@ static NSTimeInterval const kOneMinute = 60.0;
     [_webView stringByEvaluatingJavaScriptFromString:url];
   } else {
     [_webView setMainFrameURL:url];
+    [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['autonext'] = true;"];
   }
 }
 
@@ -305,6 +308,5 @@ static NSTimeInterval const kOneMinute = 60.0;
 - (void)webViewUnfocus:(WebView *)sender {
   return;
 }
-
 
 @end
