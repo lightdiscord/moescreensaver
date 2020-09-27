@@ -12,18 +12,6 @@
 		641457111AEDC92200FB6CDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 641457101AEDC92200FB6CDF /* Images.xcassets */; };
 		641457141AEDC92200FB6CDF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 641457121AEDC92200FB6CDF /* MainMenu.xib */; };
 		641457201AEDC92200FB6CDF /* WebViewScreenSaverRigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6414571F1AEDC92200FB6CDF /* WebViewScreenSaverRigTests.m */; };
-		641457291AEDCAD000FB6CDF /* WVSSConfigController.h in Headers */ = {isa = PBXBuildFile; fileRef = 641457271AEDCAD000FB6CDF /* WVSSConfigController.h */; };
-		6414572A1AEDCAD000FB6CDF /* WVSSConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641457281AEDCAD000FB6CDF /* WVSSConfigController.m */; };
-		6414572B1AEDCAD000FB6CDF /* WVSSConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 641457281AEDCAD000FB6CDF /* WVSSConfigController.m */; };
-		6414572E1AEDCBD900FB6CDF /* WVSSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6414572C1AEDCBD900FB6CDF /* WVSSConfig.h */; };
-		6414572F1AEDCBD900FB6CDF /* WVSSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6414572D1AEDCBD900FB6CDF /* WVSSConfig.m */; };
-		641457301AEDCBD900FB6CDF /* WVSSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6414572D1AEDCBD900FB6CDF /* WVSSConfig.m */; };
-		641457331AEDCCAB00FB6CDF /* WVSSAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 641457311AEDCCAB00FB6CDF /* WVSSAddress.h */; };
-		641457341AEDCCAB00FB6CDF /* WVSSAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 641457321AEDCCAB00FB6CDF /* WVSSAddress.m */; };
-		641457351AEDCCAB00FB6CDF /* WVSSAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 641457321AEDCCAB00FB6CDF /* WVSSAddress.m */; };
-		641457381AEDD51900FB6CDF /* WVSSAddressListFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 641457361AEDD51900FB6CDF /* WVSSAddressListFetcher.h */; };
-		641457391AEDD51900FB6CDF /* WVSSAddressListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 641457371AEDD51900FB6CDF /* WVSSAddressListFetcher.m */; };
-		6414573A1AEDD51900FB6CDF /* WVSSAddressListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 641457371AEDD51900FB6CDF /* WVSSAddressListFetcher.m */; };
 		6414573B1AEDECD800FB6CDF /* ConfigureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EED3E8120EC6380048A830 /* ConfigureSheet.xib */; };
 		64628F051B27BBE100B7B73D /* WebViewScreenSaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = F500797A0118B23001CA0E54 /* WebViewScreenSaverView.m */; };
 		64628F301B281BB300B7B73D /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 64628F2E1B281BB300B7B73D /* thumbnail.png */; };
@@ -65,14 +53,6 @@
 		641457191AEDC92200FB6CDF /* WebViewScreenSaverRigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewScreenSaverRigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6414571E1AEDC92200FB6CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6414571F1AEDC92200FB6CDF /* WebViewScreenSaverRigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewScreenSaverRigTests.m; sourceTree = "<group>"; };
-		641457271AEDCAD000FB6CDF /* WVSSConfigController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WVSSConfigController.h; sourceTree = "<group>"; };
-		641457281AEDCAD000FB6CDF /* WVSSConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WVSSConfigController.m; sourceTree = "<group>"; };
-		6414572C1AEDCBD900FB6CDF /* WVSSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WVSSConfig.h; sourceTree = "<group>"; };
-		6414572D1AEDCBD900FB6CDF /* WVSSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WVSSConfig.m; sourceTree = "<group>"; };
-		641457311AEDCCAB00FB6CDF /* WVSSAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WVSSAddress.h; sourceTree = "<group>"; };
-		641457321AEDCCAB00FB6CDF /* WVSSAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WVSSAddress.m; sourceTree = "<group>"; };
-		641457361AEDD51900FB6CDF /* WVSSAddressListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WVSSAddressListFetcher.h; sourceTree = "<group>"; };
-		641457371AEDD51900FB6CDF /* WVSSAddressListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WVSSAddressListFetcher.m; sourceTree = "<group>"; };
 		64628F2E1B281BB300B7B73D /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		64628F2F1B281BB300B7B73D /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 		64EED328120EC1B40048A830 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -154,14 +134,6 @@
 			children = (
 				F50079790118B23001CA0E54 /* WebViewScreenSaverView.h */,
 				F500797A0118B23001CA0E54 /* WebViewScreenSaverView.m */,
-				641457271AEDCAD000FB6CDF /* WVSSConfigController.h */,
-				641457281AEDCAD000FB6CDF /* WVSSConfigController.m */,
-				6414572C1AEDCBD900FB6CDF /* WVSSConfig.h */,
-				6414572D1AEDCBD900FB6CDF /* WVSSConfig.m */,
-				641457311AEDCCAB00FB6CDF /* WVSSAddress.h */,
-				641457321AEDCCAB00FB6CDF /* WVSSAddress.m */,
-				641457361AEDD51900FB6CDF /* WVSSAddressListFetcher.h */,
-				641457371AEDD51900FB6CDF /* WVSSAddressListFetcher.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -231,10 +203,6 @@
 			files = (
 				8D255AC70486D3F9007BF209 /* WebViewScreenSaver_Prefix.pch in Headers */,
 				8D255AC80486D3F9007BF209 /* WebViewScreenSaverView.h in Headers */,
-				641457291AEDCAD000FB6CDF /* WVSSConfigController.h in Headers */,
-				641457331AEDCCAB00FB6CDF /* WVSSAddress.h in Headers */,
-				641457381AEDD51900FB6CDF /* WVSSAddressListFetcher.h in Headers */,
-				6414572E1AEDCBD900FB6CDF /* WVSSConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,12 +373,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64628F051B27BBE100B7B73D /* WebViewScreenSaverView.m in Sources */,
-				641457301AEDCBD900FB6CDF /* WVSSConfig.m in Sources */,
-				6414572B1AEDCAD000FB6CDF /* WVSSConfigController.m in Sources */,
 				6414570F1AEDC92200FB6CDF /* main.m in Sources */,
-				641457351AEDCCAB00FB6CDF /* WVSSAddress.m in Sources */,
 				6414570D1AEDC92100FB6CDF /* AppDelegate.m in Sources */,
-				6414573A1AEDD51900FB6CDF /* WVSSAddressListFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,11 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				641457391AEDD51900FB6CDF /* WVSSAddressListFetcher.m in Sources */,
-				6414572A1AEDCAD000FB6CDF /* WVSSConfigController.m in Sources */,
-				641457341AEDCCAB00FB6CDF /* WVSSAddress.m in Sources */,
 				8D255ACC0486D3F9007BF209 /* WebViewScreenSaverView.m in Sources */,
-				6414572F1AEDCBD900FB6CDF /* WVSSConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

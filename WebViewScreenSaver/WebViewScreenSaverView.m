@@ -20,29 +20,17 @@
 //
 
 #import "WebViewScreenSaverView.h"
-#import "WVSSAddress.h"
 #import <Carbon/Carbon.h>
 
-// ScreenSaverDefaults module name.
-static NSString * const kScreenSaverName = @"WebViewScreenSaver";
-// Default intervals.
+static NSString * const kScreenSaverName = @"OpeningsMoeScreenSaver";
 static NSTimeInterval const kOneMinute = 60.0;
 
-
 @interface WebViewScreenSaverView () <
-WVSSConfigControllerDelegate,
 WebEditingDelegate,
 WebFrameLoadDelegate,
 WebPolicyDelegate,
 WebUIDelegate>
-// Timer callback that loads the next URL in the URL list.
-- (void)loadNext:(NSTimer *)timer;
-// Returns the URL for the index in the preferences.
-- (NSString *)urlForIndex:(NSInteger)index;
-// Returns the time interval in the preferences.
-- (NSTimeInterval)timeIntervalForIndex:(NSInteger)index;
 @end
-
 
 @implementation WebViewScreenSaverView {
     NSTimer *_timer;
@@ -69,10 +57,6 @@ WebUIDelegate>
         
         _currentIndex = 0;
         _isPreview = isPreview;
-        
-        // Load state from the preferences.
-        self.configController = [[WVSSConfigController alloc] initWithUserDefaults:prefs];
-        self.configController.delegate = self;
     }
     return self;
 }
@@ -90,35 +74,24 @@ WebUIDelegate>
 #pragma mark - Configure Sheet
 
 - (BOOL)hasConfigureSheet {
-    return YES;
+    return NO;
 }
 
-//- (void)setFrame:(NSRect)frameRect {
-//  [super setFrame:frameRect];
-//}
-
-- (NSWindow *)configureSheet {
-    return [self.configController configureSheet];
+- (NSWindow*)configureSheet
+{
+    return nil;
 }
 
-- (void)configController:(WVSSConfigController *)configController dismissConfigSheet:(NSWindow *)sheet {
-    if (_isPreview) {
-        [self loadFromStart];
-    }
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    [[NSApplication sharedApplication] endSheet:sheet];
-#pragma GCC diagnostic pop
+- (void)setFrame:(NSRect)frameRect {
+  [super setFrame:frameRect];
 }
+
 
 #pragma mark ScreenSaverView
 
 - (void)startAnimation {
     [super startAnimation];
     
-    //NSLog(@"startAnimation: %d %@", [NSThread isMainThread], [NSThread currentThread]);
-    
-    // Create the webview for the screensaver.
     _webView = [[WebView alloc] initWithFrame:[self bounds]];
     [_webView setFrameLoadDelegate:self];
     [_webView setShouldUpdateWhileOffscreen:YES];
@@ -134,9 +107,8 @@ WebUIDelegate>
     NSColor *color = [NSColor colorWithCalibratedWhite:0.0 alpha:1.0];
     [[_webView layer] setBackgroundColor:color.CGColor];
     
-    if (!_isPreview && _currentIndex < [[self selectedURLs] count]) {
+    if (!_isPreview) {
         [self loadFromStart];
-        
     }
 }
 
@@ -152,83 +124,11 @@ WebUIDelegate>
 #pragma mark Loading URLs
 
 - (void)loadFromStart {
-    NSTimeInterval duration = [WVSSAddress defaultDuration];
-    NSString *url = [WVSSAddress defaultAddressURL];
-    _currentIndex = 0;
+    NSString *url = @"https://openings.moe";
     
-    if ([[self selectedURLs] count]) {
-        duration = [self timeIntervalForIndex:_currentIndex];
-        url = [self urlForIndex:_currentIndex];
-    }
-    [self loadURLThing:url];
-    [_timer invalidate];
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:duration
-                                              target:self
-                                            selector:@selector(loadNext:)
-                                            userInfo:nil
-                                             repeats:NO];
-}
-
-- (void)loadNext:(NSTimer *)timer {
-    NSTimeInterval duration = [WVSSAddress defaultDuration];
-    NSString *url = [WVSSAddress defaultAddressURL];
-    NSInteger nextIndex = _currentIndex;
-    
-    // Last element, fetchURLs if they exist.
-    if (_currentIndex == [[self selectedURLs] count] - 1) {
-        [self.configController fetchAddresses];
-    }
-    
-    // Progress the URL counter.
-    if ([[self selectedURLs] count] > 0) {
-        nextIndex = (_currentIndex + 1) % [[self selectedURLs] count];
-        duration = [self timeIntervalForIndex:nextIndex];
-        url = [self urlForIndex:nextIndex];
-    }
-    [self loadURLThing:url];
-    [_timer invalidate];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:duration
-                                              target:self
-                                            selector:@selector(loadNext:)
-                                            userInfo:nil
-                                             repeats:NO];
-    _currentIndex = nextIndex;
-}
-
-- (void)loadURLThing:(NSString *)url {
-    NSString *javascriptPrefix = @"javascript:";
-    
-    if ([url isKindOfClass:[NSURL class]]) {
-        url = [(NSURL *)url absoluteString];
-    }
-    
-    if([url hasPrefix:javascriptPrefix]) {
-        [_webView stringByEvaluatingJavaScriptFromString:url];
-    } else {
-        [_webView setMainFrameURL:url];
-        [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['autonext'] = true;"];
-        [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['videoType'] = 'op';"];
-    }
-}
-
-- (NSArray *)selectedURLs {
-    return self.configController.addresses;
-}
-
-
-- (NSString *)urlForIndex:(NSInteger)index {
-    WVSSAddress *address = [self.configController.addresses objectAtIndex:index];
-    return address.url;
-}
-
-- (NSTimeInterval)timeIntervalForIndex:(NSInteger)index {
-    WVSSAddress *address = [self.configController.addresses objectAtIndex:index];
-    if (address) {
-        return (NSTimeInterval)address.duration;
-    } else {
-        return kOneMinute;
-    }
+    [_webView setMainFrameURL:url];
+    [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['autonext'] = true;"];
+    [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['videoType'] = 'op';"];
 }
 
 - (void)animateOneFrame {
@@ -244,33 +144,24 @@ WebUIDelegate>
     return self;
 }
 
+#define SET_COMMAND(key, value) case key: command = value; break;
+
 - (void)keyDown:(NSEvent *)theEvent {
     NSString *command = NULL;
-    
+
     switch (theEvent.keyCode) {
-        case kVK_ANSI_N:
-            command = @"getNewVideo()";
-            break;
-        case kVK_Space:
-            command = @"playPause()";
-            break;
-        case kVK_ANSI_S:
-            command = @"subtitles.toggle()";
-            break;
-        case kVK_ANSI_T:
-            command = @"showVideoTitle()";
-            break;
-        case kVK_LeftArrow:
-            command = @"skip(-10)";
-            break;
-        case kVK_RightArrow:
-            command = @"skip(10)";
-            break;
+        SET_COMMAND(kVK_ANSI_A, @"toggleAutonext()");
+        SET_COMMAND(kVK_ANSI_N, @"getNewVideo()");
+        SET_COMMAND(kVK_Space, @"playPause()");
+        SET_COMMAND(kVK_ANSI_S, @"subtitles.toggle()");
+        SET_COMMAND(kVK_ANSI_T, @"showVideoTitle()");
+        SET_COMMAND(kVK_LeftArrow, @"skip(-10)");
+        SET_COMMAND(kVK_RightArrow, @"skip(10)");
     }
+    
     if (command) {
         [_webView stringByEvaluatingJavaScriptFromString:command];
     }
-    return;
 }
 
 - (void)keyUp:(NSEvent *)theEvent {
