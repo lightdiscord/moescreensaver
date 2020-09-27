@@ -11,9 +11,9 @@
 		64628F311B281BB300B7B73D /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64628F2F1B281BB300B7B73D /* thumbnail@2x.png */; };
 		64EED329120EC1B40048A830 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EED328120EC1B40048A830 /* WebKit.framework */; };
 		64EED3E9120EC6380048A830 /* ConfigureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64EED3E8120EC6380048A830 /* ConfigureSheet.xib */; };
-		8D255AC80486D3F9007BF209 /* WebViewScreenSaverView.h in Headers */ = {isa = PBXBuildFile; fileRef = F50079790118B23001CA0E54 /* WebViewScreenSaverView.h */; };
+		8D255AC80486D3F9007BF209 /* MoeScreenSaverView.h in Headers */ = {isa = PBXBuildFile; fileRef = F50079790118B23001CA0E54 /* MoeScreenSaverView.h */; };
 		8D255ACA0486D3F9007BF209 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
-		8D255ACC0486D3F9007BF209 /* WebViewScreenSaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = F500797A0118B23001CA0E54 /* WebViewScreenSaverView.m */; };
+		8D255ACC0486D3F9007BF209 /* MoeScreenSaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = F500797A0118B23001CA0E54 /* MoeScreenSaverView.m */; };
 		8D255ACE0486D3F9007BF209 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		8D255ACF0486D3F9007BF209 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F27B2DFFEEEFEF11CA0E56 /* ScreenSaver.framework */; };
 /* End PBXBuildFile section */
@@ -30,8 +30,8 @@
 		64EED3E8120EC6380048A830 /* ConfigureSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigureSheet.xib; sourceTree = "<group>"; };
 		8D255AD20486D3F9007BF209 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D255AD30486D3F9007BF209 /* WebViewScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebViewScreenSaver.saver; sourceTree = BUILT_PRODUCTS_DIR; };
-		F50079790118B23001CA0E54 /* WebViewScreenSaverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewScreenSaverView.h; sourceTree = "<group>"; };
-		F500797A0118B23001CA0E54 /* WebViewScreenSaverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewScreenSaverView.m; sourceTree = "<group>"; };
+		F50079790118B23001CA0E54 /* MoeScreenSaverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoeScreenSaverView.h; sourceTree = "<group>"; };
+		F500797A0118B23001CA0E54 /* MoeScreenSaverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoeScreenSaverView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +87,8 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F50079790118B23001CA0E54 /* WebViewScreenSaverView.h */,
-				F500797A0118B23001CA0E54 /* WebViewScreenSaverView.m */,
+				F50079790118B23001CA0E54 /* MoeScreenSaverView.h */,
+				F500797A0118B23001CA0E54 /* MoeScreenSaverView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -115,7 +115,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D255AC80486D3F9007BF209 /* WebViewScreenSaverView.h in Headers */,
+				8D255AC80486D3F9007BF209 /* MoeScreenSaverView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D255ACC0486D3F9007BF209 /* WebViewScreenSaverView.m in Sources */,
+				8D255ACC0486D3F9007BF209 /* MoeScreenSaverView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

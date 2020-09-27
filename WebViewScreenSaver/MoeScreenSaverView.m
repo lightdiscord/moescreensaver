@@ -19,22 +19,18 @@
 //  limitations under the License.
 //
 
-#import "WebViewScreenSaverView.h"
+#import "MoeScreenSaverView.h"
 #import <Carbon/Carbon.h>
 
-static NSString * const kScreenSaverName = @"OpeningsMoeScreenSaver";
-
-@interface WebViewScreenSaverView () <
+@interface MoeScreenSaverView () <
 WebEditingDelegate,
 WebFrameLoadDelegate,
 WebPolicyDelegate,
 WebUIDelegate>
 @end
 
-@implementation WebViewScreenSaverView {
-    NSTimer *_timer;
+@implementation MoeScreenSaverView {
     WebView *_webView;
-    NSInteger _currentIndex;
     BOOL _isPreview;
 }
 
@@ -43,18 +39,11 @@ WebUIDelegate>
 }
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
-    NSUserDefaults *prefs = [ScreenSaverDefaults defaultsForModuleWithName:kScreenSaverName];
-    return [self initWithFrame:frame isPreview:isPreview prefsStore:prefs];
-}
-
-
-- (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview prefsStore:(NSUserDefaults *)prefs {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
         [self setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
         [self setAutoresizesSubviews:YES];
         
-        _currentIndex = 0;
         _isPreview = isPreview;
     }
     return self;
@@ -66,8 +55,6 @@ WebUIDelegate>
     [_webView setUIDelegate:nil];
     [_webView setEditingDelegate:nil];
     [_webView close];
-    [_timer invalidate];
-    _timer = nil;
 }
 
 #pragma mark - Configure Sheet
@@ -106,15 +93,13 @@ WebUIDelegate>
     NSColor *color = [NSColor colorWithCalibratedWhite:0.0 alpha:1.0];
     [[_webView layer] setBackgroundColor:color.CGColor];
     
-    if (!_isPreview) {
+    //if (!_isPreview) {
         [self loadFromStart];
-    }
+    //}
 }
 
 - (void)stopAnimation {
     [super stopAnimation];
-    [_timer invalidate];
-    _timer = nil;
     [_webView removeFromSuperview];
     [_webView close];
     _webView = nil;
@@ -143,19 +128,17 @@ WebUIDelegate>
     return self;
 }
 
-#define SET_COMMAND(key, value) case key: command = value; break;
-
 - (void)keyDown:(NSEvent *)theEvent {
     NSString *command = NULL;
 
     switch (theEvent.keyCode) {
-        SET_COMMAND(kVK_ANSI_A, @"toggleAutonext()");
-        SET_COMMAND(kVK_ANSI_N, @"getNewVideo()");
-        SET_COMMAND(kVK_Space, @"playPause()");
-        SET_COMMAND(kVK_ANSI_S, @"subtitles.toggle()");
-        SET_COMMAND(kVK_ANSI_T, @"showVideoTitle()");
-        SET_COMMAND(kVK_LeftArrow, @"skip(-10)");
-        SET_COMMAND(kVK_RightArrow, @"skip(10)");
+        CASE_COMMAND(kVK_ANSI_A, @"toggleAutonext()");
+        CASE_COMMAND(kVK_ANSI_N, @"getNewVideo()");
+        CASE_COMMAND(kVK_Space, @"playPause()");
+        CASE_COMMAND(kVK_ANSI_S, @"subtitles.toggle()");
+        CASE_COMMAND(kVK_ANSI_T, @"showVideoTitle()");
+        CASE_COMMAND(kVK_LeftArrow, @"skip(-10)");
+        CASE_COMMAND(kVK_RightArrow, @"skip(10)");
     }
     
     if (command) {

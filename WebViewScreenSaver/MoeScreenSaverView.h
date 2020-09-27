@@ -26,8 +26,13 @@
 #import <ScreenSaver/ScreenSaver.h>
 #import <WebKit/WebKit.h>
 
-@interface WebViewScreenSaverView : ScreenSaverView
+#define CASE_COMMAND(key, value) case key: \
+    command = value; \
+    break;
 
-- (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview prefsStore:(NSUserDefaults *)prefs;
+
+@interface MoeScreenSaverView : ScreenSaverView
+
+- (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview;
 
 @end
