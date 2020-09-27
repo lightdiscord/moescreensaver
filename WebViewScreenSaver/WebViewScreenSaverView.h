@@ -25,13 +25,8 @@
 #import <Foundation/Foundation.h>
 #import <ScreenSaver/ScreenSaver.h>
 #import <WebKit/WebKit.h>
-#import "WVSSConfigController.h"
 
-// A simple screen saver that is a configurable webview driven from a list
-// of URLs.
 @interface WebViewScreenSaverView : ScreenSaverView
-
-@property (nonatomic, strong) WVSSConfigController *configController;
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview prefsStore:(NSUserDefaults *)prefs;
 

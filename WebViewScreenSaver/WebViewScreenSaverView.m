@@ -23,7 +23,6 @@
 #import <Carbon/Carbon.h>
 
 static NSString * const kScreenSaverName = @"OpeningsMoeScreenSaver";
-static NSTimeInterval const kOneMinute = 60.0;
 
 @interface WebViewScreenSaverView () <
 WebEditingDelegate,
