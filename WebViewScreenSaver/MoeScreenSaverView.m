@@ -30,7 +30,7 @@ WebUIDelegate>
 @end
 
 @implementation MoeScreenSaverView {
-    WebView *_webView;
+    WebView *webview;
     BOOL _isPreview;
 }
 
@@ -50,11 +50,11 @@ WebUIDelegate>
 }
 
 - (void)dealloc {
-    [_webView setFrameLoadDelegate:nil];
-    [_webView setPolicyDelegate:nil];
-    [_webView setUIDelegate:nil];
-    [_webView setEditingDelegate:nil];
-    [_webView close];
+    [webview setFrameLoadDelegate:nil];
+    [webview setPolicyDelegate:nil];
+    [webview setUIDelegate:nil];
+    [webview setEditingDelegate:nil];
+    [webview close];
 }
 
 #pragma mark - Configure Sheet
@@ -78,31 +78,31 @@ WebUIDelegate>
 - (void)startAnimation {
     [super startAnimation];
     
-    _webView = [[WebView alloc] initWithFrame:[self bounds]];
-    [_webView setFrameLoadDelegate:self];
-    [_webView setShouldUpdateWhileOffscreen:YES];
-    [_webView setPolicyDelegate:self];
-    [_webView setUIDelegate:self];
-    [_webView setEditingDelegate:self];
-    [_webView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-    [_webView setAutoresizesSubviews:YES];
-    [_webView setDrawsBackground:NO];
+    webview = [[WebView alloc] initWithFrame:[self bounds]];
+    [webview setFrameLoadDelegate:self];
+    [webview setShouldUpdateWhileOffscreen:YES];
+    [webview setPolicyDelegate:self];
+    [webview setUIDelegate:self];
+    [webview setEditingDelegate:self];
+    [webview setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+    [webview setAutoresizesSubviews:YES];
+    [webview setDrawsBackground:NO];
     
-    [self addSubview:_webView];
+    [self addSubview:webview];
     
     NSColor *color = [NSColor colorWithCalibratedWhite:0.0 alpha:1.0];
-    [[_webView layer] setBackgroundColor:color.CGColor];
+    [[webview layer] setBackgroundColor:color.CGColor];
     
-    //if (!_isPreview) {
+    if (!_isPreview) {
         [self loadFromStart];
-    //}
+    }
 }
 
 - (void)stopAnimation {
     [super stopAnimation];
-    [_webView removeFromSuperview];
-    [_webView close];
-    _webView = nil;
+    [webview removeFromSuperview];
+    [webview close];
+    webview = nil;
 }
 
 #pragma mark Loading URLs
@@ -110,9 +110,7 @@ WebUIDelegate>
 - (void)loadFromStart {
     NSString *url = @"https://openings.moe";
     
-    [_webView setMainFrameURL:url];
-    [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['autonext'] = true;"];
-    [_webView stringByEvaluatingJavaScriptFromString:@"localStorage['videoType'] = 'op';"];
+    [webview setMainFrameURL:url];
 }
 
 - (void)animateOneFrame {
@@ -134,15 +132,16 @@ WebUIDelegate>
     switch (theEvent.keyCode) {
         CASE_COMMAND(kVK_ANSI_A, @"toggleAutonext()");
         CASE_COMMAND(kVK_ANSI_N, @"getNewVideo()");
-        CASE_COMMAND(kVK_Space, @"playPause()");
+        //CASE_COMMAND(kVK_Space, @"playPause()");
         CASE_COMMAND(kVK_ANSI_S, @"subtitles.toggle()");
         CASE_COMMAND(kVK_ANSI_T, @"showVideoTitle()");
         CASE_COMMAND(kVK_LeftArrow, @"skip(-10)");
         CASE_COMMAND(kVK_RightArrow, @"skip(10)");
+        CASE_COMMAND(kVK_ANSI_M, @"toggleMenu()");
     }
     
     if (command) {
-        [_webView stringByEvaluatingJavaScriptFromString:command];
+        [webview stringByEvaluatingJavaScriptFromString:command];
     }
 }
 
@@ -173,6 +172,8 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
     [webView resignFirstResponder];
     [[[webView mainFrame] frameView] setAllowsScrolling:NO];
     //[webView setDrawsBackground:YES];
+    [webview stringByEvaluatingJavaScriptFromString:@"changeVideoType('op')"];
+    [webview stringByEvaluatingJavaScriptFromString:@"localStorage['autonext'] = true"];
 }
 
 - (void)webView:(WebView *)webView unableToImplementPolicyWithError:(NSError *)error frame:(WebFrame *)frame {
